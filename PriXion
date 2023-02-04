@@ -1,1 +1,138 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/DoniTwT/PriXion/main/obf_2J3I4N5Jy6V7I0pVJRm69GxV47szkX1s2VSPG381yC7ThwBdnFUuYz77Vyq9XnnA.lua"))()
+
+
+-- El script real
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local TextButton = Instance.new("TextButton")
+local TextButton_2 = Instance.new("TextButton")
+local TextBox = Instance.new("TextBox")
+local PriXion = Instance.new("TextLabel")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(52, 52, 52)
+Frame.Position = UDim2.new(0.353198916, 0, 0.328828812, 0)
+Frame.Size = UDim2.new(0, 397, 0, 212)
+
+TextButton.Parent = Frame
+TextButton.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+TextButton.Position = UDim2.new(0.310455382, 0, 0.580026031, 0)
+TextButton.Size = UDim2.new(0, 150, 0, 34)
+TextButton.Font = Enum.Font.Gotham
+TextButton.Text = "Get Key"
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.TextSize = 29.000
+TextButton.MouseButton1Click:Connect(function()
+	game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Copiado!"; Text = "Ponlo en tu navegador"; Icon = "rbxassetid://9327507243"; Duration = 10 })
+	wait(0.7)
+	setclipboard("https://controlc.com/d960ed8c")
+end)
+
+TextButton_2.Parent = Frame
+TextButton_2.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+TextButton_2.BorderColor3 = Color3.fromRGB(15, 23, 29)
+TextButton_2.BorderSizePixel = 0
+TextButton_2.Position = UDim2.new(0.171284646, 0, 0.783018827, 0)
+TextButton_2.Size = UDim2.new(0, 261, 0, 34)
+TextButton_2.Font = Enum.Font.Gotham
+TextButton_2.Text = "Enter"
+TextButton_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_2.TextSize = 14.000
+TextButton_2.MouseButton1Click:Connect(function()
+	if TextBox.Text == "PIFYGzFnR7wNVWB4h0G0ocJCwTFxTjIY" then
+		Frame.Visible = false
+		wait(0.5)
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/DoniTwT/PriXion/main/obf_2J3I4N5Jy6V7I0pVJRm69GxV47szkX1s2VSPG381yC7ThwBdnFUuYz77Vyq9XnnA.lua"))()
+	end
+end)
+
+TextBox.Parent = Frame
+TextBox.BackgroundColor3 = Color3.fromRGB(34, 36, 30)
+TextBox.Position = UDim2.new(0.224181354, 0, 0.316037744, 0)
+TextBox.Size = UDim2.new(0, 199, 0, 30)
+TextBox.Font = Enum.Font.SourceSans
+TextBox.Text = "Enter Key Here"
+TextBox.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextBox.TextSize = 14.000
+
+PriXion.Name = "PriXion"
+PriXion.Parent = Frame
+PriXion.BackgroundColor3 = Color3.fromRGB(52, 52, 52)
+PriXion.BorderSizePixel = 0
+PriXion.Position = UDim2.new(0.0428211577, 0, 0.0424528308, 0)
+PriXion.Size = UDim2.new(0, 362, 0, 52)
+PriXion.Font = Enum.Font.Nunito
+PriXion.Text = "PriXion"
+PriXion.TextColor3 = Color3.fromRGB(0, 0, 0)
+PriXion.TextSize = 41.000
+
+--Scripts
+
+local function LLCZL_fake_script() -- Frame.Smooth GUI Dragging 
+	local script = Instance.new('LocalScript', Frame)
+
+	local UserInputService = game:GetService("UserInputService")
+	local runService = (game:GetService("RunService"));
+
+	local gui = script.Parent
+
+	local dragging
+	local dragInput
+	local dragStart
+	local startPos
+
+	function Lerp(a, b, m)
+		return a + (b - a) * m
+	end;
+
+	local lastMousePos
+	local lastGoalPos
+	local DRAG_SPEED = (8); -- // The speed of the UI darg.
+	function Update(dt)
+		if not (startPos) then return end;
+		if not (dragging) and (lastGoalPos) then
+			gui.Position = UDim2.new(startPos.X.Scale, Lerp(gui.Position.X.Offset, lastGoalPos.X.Offset, dt * DRAG_SPEED), startPos.Y.Scale, Lerp(gui.Position.Y.Offset, lastGoalPos.Y.Offset, dt * DRAG_SPEED))
+			return 
+		end;
+
+		local delta = (lastMousePos - UserInputService:GetMouseLocation())
+		local xGoal = (startPos.X.Offset - delta.X);
+		local yGoal = (startPos.Y.Offset - delta.Y);
+		lastGoalPos = UDim2.new(startPos.X.Scale, xGoal, startPos.Y.Scale, yGoal)
+		gui.Position = UDim2.new(startPos.X.Scale, Lerp(gui.Position.X.Offset, xGoal, dt * DRAG_SPEED), startPos.Y.Scale, Lerp(gui.Position.Y.Offset, yGoal, dt * DRAG_SPEED))
+	end;
+
+	gui.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			dragging = true
+			dragStart = input.Position
+			startPos = gui.Position
+			lastMousePos = UserInputService:GetMouseLocation()
+
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragging = false
+				end
+			end)
+		end
+	end)
+
+	gui.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			dragInput = input
+		end
+	end)
+
+	runService.Heartbeat:Connect(Update)
+end
+coroutine.wrap(LLCZL_fake_script)()
