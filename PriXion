@@ -1,1 +1,1 @@
-loadstring(game:HttpGet("https://github.com/DoniTwT/PriXion/blob/main/ElPrixionReal-obfuscated.lua", true))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/DoniTwT/PriXion/main/ElPrixionReal-obfuscated.lua", true))()
