@@ -1,1 +1,2 @@
+-- Made by DoniTwT and XnXs
 loadstring(game:HttpGet("https://raw.githubusercontent.com/DoniTwT/PriXion/main/ElPrixionReal-obfuscated.lua", true))()
